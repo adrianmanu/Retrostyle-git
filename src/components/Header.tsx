@@ -169,43 +169,70 @@ export function Header() {
       </div>
 
       {mobileOpen && (
-        <div className="fixed inset-0 z-[60] md:hidden">
+        <div className="fixed inset-0 z-[100] md:hidden">
           <button
             type="button"
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            className="absolute inset-0 z-0 bg-black/85 backdrop-blur-md"
             aria-label="Cerrar menú"
             onClick={() => setMobileOpen(false)}
           />
-          <div className="absolute right-0 top-0 flex h-full w-[min(100%,20rem)] flex-col border-l border-border bg-background p-6 shadow-2xl">
-            <div className="mb-8 flex items-center justify-between">
-              <span className="font-display text-lg font-bold">Menú</span>
+          <div
+            className="absolute right-0 top-0 z-10 flex h-full w-[min(100%,22rem)] flex-col border-l border-border/80 bg-[#0a0a0c] shadow-[-12px_0_40px_rgba(0,0,0,0.55)]"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menú de navegación"
+          >
+            <div className="flex shrink-0 items-center justify-between border-b border-border bg-surface px-5 py-4">
+              <span className="font-display text-lg font-bold text-foreground">
+                Menú
+              </span>
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
-                className="rounded-full p-2 hover:bg-surface-elevated"
+                className="rounded-full p-2 text-foreground hover:bg-surface-elevated"
                 aria-label="Cerrar"
               >
-                <X className="h-5 w-5" />
+                <X className="h-5 w-5" strokeWidth={2} />
               </button>
             </div>
-            <nav className="flex flex-col gap-1">
+            <nav className="flex flex-1 flex-col gap-3 overflow-y-auto p-5">
               <Link
                 to="/"
                 onClick={() => setMobileOpen(false)}
-                className="rounded-xl px-3 py-3 text-base font-medium hover:bg-surface-elevated"
+                className={[
+                  'rounded-2xl border px-4 py-3.5 text-base font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition',
+                  pathname === '/'
+                    ? 'border-accent/50 bg-accent-muted text-accent'
+                    : 'border-border/80 bg-surface-elevated text-foreground hover:border-accent/40 hover:bg-surface',
+                ].join(' ')}
               >
                 Inicio
               </Link>
-              {nav.map(({ to, label }) => (
-                <Link
-                  key={to + label}
-                  to={to}
-                  onClick={() => setMobileOpen(false)}
-                  className="rounded-xl px-3 py-3 text-base font-medium hover:bg-surface-elevated"
-                >
-                  {label}
-                </Link>
-              ))}
+              <p className="pt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-muted">
+                Tienda
+              </p>
+              {nav.map(({ to, cat, label }) => {
+                const active =
+                  pathname.startsWith('/tienda') &&
+                  (cat === null
+                    ? shopCat == null || shopCat === ''
+                    : shopCat === cat)
+                return (
+                  <Link
+                    key={to + label}
+                    to={to}
+                    onClick={() => setMobileOpen(false)}
+                    className={[
+                      'rounded-2xl border px-4 py-3.5 text-base font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition',
+                      active
+                        ? 'border-accent/50 bg-accent-muted text-accent'
+                        : 'border-border/80 bg-surface-elevated text-foreground hover:border-accent/35 hover:bg-surface',
+                    ].join(' ')}
+                  >
+                    {label}
+                  </Link>
+                )
+              })}
             </nav>
           </div>
         </div>
