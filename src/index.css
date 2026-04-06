@@ -10,11 +10,11 @@
   --color-border: #27272f;
   --color-muted: #a1a1aa;
   --color-foreground: #fafafa;
-  --color-accent: #f97316;
-  --color-accent-hover: #ea580c;
-  --color-accent-muted: rgba(249, 115, 22, 0.12);
+  --color-accent: #a855f7;
+  --color-accent-hover: #9333ea;
+  --color-accent-muted: rgba(168, 85, 247, 0.14);
 
-  --shadow-glow: 0 0 80px -20px rgba(249, 115, 22, 0.35);
+  --shadow-glow: 0 0 80px -20px rgba(168, 85, 247, 0.38);
 }
 
 @layer base {

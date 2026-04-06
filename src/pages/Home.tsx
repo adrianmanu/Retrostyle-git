@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Hero } from '../components/Hero'
 import { TrustBar } from '../components/TrustBar'
 import { ProductCard } from '../components/ProductCard'
+import { CustomerReviewsSection } from '../components/CustomerReviewsSection'
 import { useCatalog } from '../context/CatalogContext'
 
 export function Home() {
@@ -20,8 +21,8 @@ export function Home() {
               Destacados
             </h2>
             <p className="mt-2 max-w-xl text-muted">
-              Piezas que definen el ADN de Retrostyle: tipografía clara, color con
-              intención y cortes listos para el día a día.
+              Piezas que definen el ADN de Retrostyle: color con intención y cortes
+              listos para el día a día.
             </p>
           </div>
           <Link
@@ -43,26 +44,13 @@ export function Home() {
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 lg:items-center">
             <div className="order-2 lg:order-1">
-              <h2 className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
-                Hecha para pantalla, pensada para llevar
-              </h2>
-              <p className="mt-4 leading-relaxed text-muted">
-                Cada diseño parte de una idea: que se lea bien en un móvil y se
-                sienta bien en persona. Trabajamos con tejidos de peso medio, buen
-                caída y acabados que aguantan lavados sin perder forma.
+              <p className="leading-relaxed text-muted">
+                En Retrostyle no solo usas ropa, eres parte de la identidad.
               </p>
-              <ul className="mt-8 space-y-3 text-sm">
-                {[
-                  'Composición cromática estudiada para redes',
-                  'Cortes contemporáneos: boxy, oversize y slim',
-                  'Producción en tiradas controladas',
-                ].map((t) => (
-                  <li key={t} className="flex gap-3">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                    {t}
-                  </li>
-                ))}
-              </ul>
+              <p className="mt-4 leading-relaxed text-muted">
+                Diseños únicos y cortes chéveres hechos para que destaques y luzcas
+                con actitud en la calle.
+              </p>
             </div>
             <div className="order-1 aspect-[4/3] overflow-hidden rounded-3xl border border-border lg:order-2">
               <img
@@ -76,35 +64,7 @@ export function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <h2 className="text-center font-display text-2xl font-extrabold sm:text-3xl">
-          Lo que dicen quienes ya la llevan
-        </h2>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {[
-            {
-              name: 'Laura M.',
-              text: 'Calidad de camiseta de marca grande, pero con personalidad. El color es tal como en las fotos.',
-            },
-            {
-              name: 'Daniel R.',
-              text: 'Envío rápido y embalaje cuidado. La tipografía del print se ve nítida incluso de cerca.',
-            },
-            {
-              name: 'Elena V.',
-              text: 'Me encanta el corte boxy. Ya tengo dos y seguiré mirando las novedades.',
-            },
-          ].map((t) => (
-            <blockquote
-              key={t.name}
-              className="rounded-2xl border border-border bg-surface p-6"
-            >
-              <p className="text-sm leading-relaxed text-muted">&ldquo;{t.text}&rdquo;</p>
-              <footer className="mt-4 font-display text-sm font-bold">{t.name}</footer>
-            </blockquote>
-          ))}
-        </div>
-      </section>
+      <CustomerReviewsSection />
     </>
   )
 }

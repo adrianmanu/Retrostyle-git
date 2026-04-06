@@ -1,4 +1,5 @@
 import type { Category, Product } from './catalogTypes'
+import { publicAsset } from '../lib/publicAsset'
 
 export const seedCategories: Category[] = [
   { id: 'basics', label: 'Básicas' },
@@ -9,58 +10,62 @@ export const seedCategories: Category[] = [
 export const seedProducts: Product[] = [
   {
     id: '1',
-    slug: 'boxy-type-black',
-    name: 'Boxy Type — Negro',
-    price: 32,
-    compareAtPrice: 38,
-    categoryId: 'basics',
+    slug: 'inner-loop',
+    name: 'INNER LOOP',
+    price: 21.99,
+    categoryId: 'limited',
     stock: 45,
-    colors: [
-      { name: 'Negro', hex: '#18181b' },
-      { name: 'Crema', hex: '#f5f5f0' },
-      { name: 'Terracota', hex: '#c2410c' },
-    ],
-    description: 'Corte boxy con hombro caído. Algodón peinado 220 g/m².',
+    colors: [{ name: 'Negro', hex: '#18181b' }],
+    dropLabel: 'Drop: INNER LOOP',
+    phrase: 'Stuck inside myself.',
+    concept:
+      'Una mente atrapada en sí misma. Pensamientos que se repiten, identidades que se fragmentan. No es locura… es conciencia en exceso. Este diseño representa ese momento en el que te miras tanto por dentro que empiezas a desconocerte.',
+    description:
+      'Corte boxy fit, 280 g, 100% algodón, tecnología tacto al frío, estampado DTF.',
     detail:
-      'Pensada para destacar tipografía y silueta. Costuras reforzadas, cuello canalé de doble aguja y etiqueta tejida minimalista.',
+      'No todos van a entenderlo. INNER LOOP no es solo un diseño, es un estado mental. Cuando tu mente no se apaga, se repite. Y tú te quedas ahí.',
+    extraNote: 'INNER LOOP — Limited Drop. No restock.',
     isNew: true,
-    image:
-      'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80',
+    image: publicAsset('imagenes/inner-loop.png'),
   },
   {
     id: '2',
-    slug: 'oversize-spectrum',
-    name: 'Spectrum Oversize',
-    price: 36,
+    slug: 'silent-spray',
+    name: 'Silent spray',
+    price: 21.99,
     categoryId: 'graficas',
     stock: 32,
     colors: [
       { name: 'Gris', hex: '#52525b' },
       { name: 'Blanco roto', hex: '#e4e4e7' },
     ],
-    description: 'Print degradado inspirado en feeds analógicos.',
+    dropLabel: 'Drop: Silent Spray',
+    phrase: 'Speak loud without saying a word.',
+    concept:
+      'Silent Spray representa la expresión urbana silenciosa: el contraste entre lo minimalista al frente y el caos creativo en la espalda. Inspirado en el graffiti callejero, transmite identidad, rebeldía y autenticidad sin necesidad de palabras.',
+    description:
+      'Corte boxy fit, 280 g, 100% algodón, tecnología tacto al frío, estampado DTF.',
     detail:
-      'Tintas ecológicas, tacto suave. Oversize real: hombro ampliado y largo de manga generoso.',
-    image:
-      'https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80',
+      'El frente es minimalista; la espalda lleva el grafiti y el mensaje. Pensada para quienes prefieren que el impacto se vea al girarse.',
+    image: publicAsset('imagenes/silent-spray.png'),
   },
   {
     id: '3',
-    slug: 'slim-fit-serif',
-    name: 'Serif Slim',
-    price: 28,
+    slug: 'retro-squad-23',
+    name: 'Retro Squad 23',
+    price: 19.99,
     categoryId: 'basics',
     stock: 60,
-    colors: [
-      { name: 'Blanco', hex: '#fafafa' },
-      { name: 'Marino', hex: '#1e3a5f' },
-      { name: 'Negro', hex: '#09090b' },
-    ],
-    description: 'Slim fit con micro tipografía serif en pecho.',
+    colors: [{ name: 'Negro', hex: '#09090b' }],
+    dropLabel: 'Drop: Retro Squad 23',
+    phrase: 'Built for the streets. Worn like a legacy.',
+    concept:
+      'Retro Squad 23 fusiona la estética deportiva clásica con la esencia del streetwear moderno. Inspirado en los jerseys icónicos y la cultura de equipo, este diseño representa identidad, pertenencia y actitud. El número 23 simboliza legado, liderazgo y presencia, mientras que el estilo limpio en negro refuerza una vibra elegante y dominante en la calle. No es solo ropa, es uniforme de quienes juegan en su propia liga.',
+    description:
+      'Corte boxy fit, 100% poliéster, cuello RIB, sublimación.',
     detail:
-      'Ideal para capas: chaqueta técnica o camisa abierta. Tejido compacto con buena recuperación.',
-    image:
-      'https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=800&q=80',
+      'Jersey streetwear con alma de equipo: el 23 remite a legado y presencia. Acabado en negro para dominar la calle con calma.',
+    image: publicAsset('imagenes/retro-squad-23.png'),
   },
   {
     id: '4',

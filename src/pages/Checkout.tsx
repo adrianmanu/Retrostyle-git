@@ -9,14 +9,7 @@ import {
   saveTransferOrder,
   type TransferOrderLine,
 } from '../lib/transferOrdersStorage'
-
-function formatMoney(amount: number, currency: 'EUR' | 'USD') {
-  return new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency,
-    minimumFractionDigits: 2,
-  }).format(amount)
-}
+import { formatMoney } from '../lib/money'
 
 const MAX_FILE_BYTES = 2.5 * 1024 * 1024
 
@@ -46,7 +39,7 @@ export function Checkout() {
         <p className="mt-2 text-muted">Añade productos antes de pagar.</p>
         <Link
           to="/tienda"
-          className="mt-8 inline-block rounded-full bg-accent px-8 py-3 text-sm font-semibold text-zinc-950"
+          className="mt-8 inline-block rounded-full bg-accent px-8 py-3 text-sm font-semibold text-white"
         >
           Ir a la tienda
         </Link>
@@ -301,7 +294,7 @@ export function Checkout() {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full rounded-full bg-accent py-3.5 text-sm font-semibold text-zinc-950 transition hover:bg-accent-hover disabled:opacity-60 lg:w-auto lg:px-10"
+            className="w-full rounded-full bg-accent py-3.5 text-sm font-semibold text-white transition hover:bg-accent-hover disabled:opacity-60 lg:w-auto lg:px-10"
           >
             {submitting ? 'Enviando pedido…' : 'Confirmar pedido y comprobante'}
           </button>
@@ -321,7 +314,7 @@ export function Checkout() {
                     {p.name} × {line.quantity}
                   </span>
                   <span className="tabular-nums">
-                    {(p.price * line.quantity).toFixed(2)} €
+                    {formatMoney(p.price * line.quantity)}
                   </span>
                 </li>
               )
@@ -329,7 +322,7 @@ export function Checkout() {
           </ul>
           <div className="mt-6 flex justify-between border-t border-border pt-4 font-display text-lg font-bold">
             <span>Total a transferir</span>
-            <span className="tabular-nums">{formatMoney(subtotal, currency)}</span>
+            <span className="tabular-nums">{formatMoney(subtotal)}</span>
           </div>
         </aside>
       </div>

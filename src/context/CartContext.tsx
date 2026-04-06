@@ -33,19 +33,14 @@ interface CartContextValue {
   setQuantity: (lineId: string, quantity: number) => AddItemResult
   itemCount: number
   subtotal: number
+  /** Moneda fija: USD (Ecuador). */
   currency: Currency
-  setCurrency: (c: Currency) => void
   clearCart: () => void
 }
 
 const CartContext = createContext<CartContextValue | null>(null)
 
-export type Currency = 'EUR' | 'USD'
-
-const rates: Record<Currency, number> = {
-  EUR: 1,
-  USD: 1.08,
-}
+export type Currency = 'USD'
 
 function makeLineId(productId: string, colorName: string) {
   return `${productId}::${colorName}`
@@ -64,7 +59,7 @@ function CartProviderInner({ children }: { children: ReactNode }) {
   linesRef.current = lines
 
   const [isOpen, setIsOpen] = useState(false)
-  const [currency, setCurrency] = useState<Currency>('EUR')
+  const currency: Currency = 'USD'
 
   const openCart = useCallback(() => setIsOpen(true), [])
   const closeCart = useCallback(() => setIsOpen(false), [])
@@ -150,9 +145,8 @@ function CartProviderInner({ children }: { children: ReactNode }) {
       count += line.quantity
       total += p.price * line.quantity
     }
-    total *= rates[currency]
     return { itemCount: count, subtotal: total }
-  }, [lines, currency, getProductById])
+  }, [lines, getProductById])
 
   const value = useMemo(
     () => ({
@@ -166,7 +160,6 @@ function CartProviderInner({ children }: { children: ReactNode }) {
       itemCount,
       subtotal,
       currency,
-      setCurrency,
       clearCart,
     }),
     [

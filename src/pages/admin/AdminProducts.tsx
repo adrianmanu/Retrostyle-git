@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Pencil, Plus, Trash2 } from 'lucide-react'
 import type { Product, ProductColor } from '../../data/catalogTypes'
 import { useCatalog } from '../../context/CatalogContext'
+import { formatMoney } from '../../lib/money'
 
 function parseColors(text: string): ProductColor[] {
   return text
@@ -104,7 +105,7 @@ export function AdminProducts() {
             Productos
           </h1>
           <p className="mt-2 text-muted">
-            Precio en €, stock total compartido entre colores en el carrito.
+            Precio en USD, stock total compartido entre colores en el carrito.
           </p>
         </div>
         <button
@@ -135,7 +136,7 @@ export function AdminProducts() {
                 <td className="px-3 py-3 text-muted">
                   {getCategoryLabel(p.categoryId)}
                 </td>
-                <td className="px-3 py-3 tabular-nums">{p.price.toFixed(2)} €</td>
+                <td className="px-3 py-3 tabular-nums">{formatMoney(p.price)}</td>
                 <td className="px-3 py-3 tabular-nums">{p.stock}</td>
                 <td className="px-3 py-3 text-right">
                   <button
@@ -192,7 +193,7 @@ export function AdminProducts() {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="text-xs font-semibold uppercase tracking-wider text-muted">
-                    Precio (€)
+                    Precio (USD)
                   </label>
                   <input
                     type="number"
@@ -332,7 +333,7 @@ export function AdminProducts() {
               <button
                 type="button"
                 onClick={save}
-                className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-zinc-950 hover:bg-accent-hover"
+                className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white hover:bg-accent-hover"
               >
                 Guardar
               </button>

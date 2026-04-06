@@ -13,20 +13,13 @@ import {
   type DeliveryStatus,
   type TransferOrder,
 } from '../../lib/transferOrdersStorage'
+import { formatMoney } from '../../lib/money'
 
 function formatDate(iso: string) {
   return new Intl.DateTimeFormat('es', {
     dateStyle: 'short',
     timeStyle: 'short',
   }).format(new Date(iso))
-}
-
-function formatMoney(amount: number, currency: string) {
-  return new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: currency === 'USD' ? 'USD' : 'EUR',
-    minimumFractionDigits: 2,
-  }).format(amount)
 }
 
 export function AdminPedidos() {
@@ -87,7 +80,7 @@ export function AdminPedidos() {
             onClick={() => setFilter(id)}
             className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
               filter === id
-                ? 'bg-accent text-zinc-950'
+                ? 'bg-accent text-white'
                 : 'border border-border bg-surface text-muted hover:border-accent/40'
             }`}
           >
@@ -236,7 +229,10 @@ function OrderCard({
                       {line.name} · {line.colorName} × {line.quantity}
                     </span>
                     <span className="tabular-nums text-muted">
-                      {(line.unitPrice * line.quantity).toFixed(2)} €
+                      {formatMoney(
+                        line.unitPrice * line.quantity,
+                        order.currency,
+                      )}
                     </span>
                   </li>
                 ))}

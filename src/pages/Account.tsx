@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { useReviews } from '../context/ReviewsContext'
+import { ReviewForm } from '../components/ReviewForm'
 
 export function Account() {
   const { user, logout } = useAuth()
+  const { reviewableOrders } = useReviews()
 
   return (
     <div className="mx-auto max-w-lg px-4 py-16 sm:px-6 lg:py-20">
@@ -17,11 +20,25 @@ export function Account() {
         <p className="mt-6 text-sm text-muted">Rol</p>
         <p className="mt-1 capitalize">{user?.role === 'admin' ? 'Administrador' : 'Cliente'}</p>
       </div>
+
+      {reviewableOrders.length > 0 && (
+        <div className="mt-10">
+          <h2 className="font-display text-xl font-bold">Valorar una compra</h2>
+          <p className="mt-2 text-sm text-muted">
+            Tienes pedidos pendientes de opinión. Ayuda a otros con tu experiencia
+            (calidad, talla, envío).
+          </p>
+          <div className="mt-6">
+            <ReviewForm orders={reviewableOrders} compact />
+          </div>
+        </div>
+      )}
+
       <div className="mt-8 flex flex-wrap gap-4">
         {user?.role === 'admin' && (
           <Link
             to="/admin"
-            className="rounded-full bg-accent px-6 py-2.5 text-sm font-semibold text-zinc-950 hover:bg-accent-hover"
+            className="rounded-full bg-accent px-6 py-2.5 text-sm font-semibold text-white hover:bg-accent-hover"
           >
             Panel de administración
           </Link>

@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { ChevronLeft, ShoppingCart } from 'lucide-react'
 import { useCatalog } from '../context/CatalogContext'
 import { useCart } from '../context/CartContext'
+import { formatMoney } from '../lib/money'
 
 export function ProductPage() {
   const { slug } = useParams<{ slug: string }>()
@@ -50,11 +51,18 @@ export function ProductPage() {
 
         <div className="flex flex-col">
           {product.isNew && (
-            <span className="w-fit rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase text-zinc-950">
+            <span className="w-fit rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase text-white">
               Nuevo
             </span>
           )}
-          <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-accent">
+          {product.dropLabel && (
+            <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+              {product.dropLabel}
+            </p>
+          )}
+          <p
+            className={`text-xs font-semibold uppercase tracking-widest text-accent ${product.dropLabel ? 'mt-2' : 'mt-3'}`}
+          >
             {getCategoryLabel(product.categoryId)}
           </p>
           <h1 className="mt-2 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
@@ -66,16 +74,45 @@ export function ProductPage() {
           <div className="mt-6 flex flex-wrap items-baseline gap-3">
             {product.compareAtPrice != null && (
               <span className="text-lg text-muted line-through tabular-nums">
-                {product.compareAtPrice.toFixed(2)} €
+                {formatMoney(product.compareAtPrice)}
               </span>
             )}
             <span className="font-display text-3xl font-bold tabular-nums">
-              {product.price.toFixed(2)} €
+              {formatMoney(product.price)}
             </span>
           </div>
 
-          <p className="mt-6 text-lg leading-relaxed text-muted">{product.description}</p>
-          <p className="mt-4 leading-relaxed text-muted/90">{product.detail}</p>
+          {product.phrase && (
+            <blockquote className="mt-8 border-l-2 border-accent pl-4 font-display text-lg font-semibold italic leading-snug text-foreground">
+              &ldquo;{product.phrase}&rdquo;
+            </blockquote>
+          )}
+
+          {product.concept && (
+            <p className="mt-6 leading-relaxed text-muted">{product.concept}</p>
+          )}
+
+          <div className="mt-8 space-y-2">
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted">
+              Ficha técnica
+            </p>
+            <p className="leading-relaxed text-muted">{product.description}</p>
+          </div>
+
+          {product.detail.trim() !== product.concept?.trim() && (
+            <div className="mt-6 space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted">
+                Descripción
+              </p>
+              <p className="leading-relaxed text-muted/90">{product.detail}</p>
+            </div>
+          )}
+
+          {product.extraNote && (
+            <p className="mt-6 rounded-xl border border-accent/30 bg-accent-muted px-4 py-3 text-sm font-medium text-foreground">
+              {product.extraNote}
+            </p>
+          )}
 
           {error && (
             <p className="mt-4 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-200">
@@ -117,7 +154,7 @@ export function ProductPage() {
               const r = addItem(product, color.name)
               if (!r.ok) setError(r.error)
             }}
-            className="mt-10 inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent py-4 text-base font-semibold text-zinc-950 transition hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto sm:min-w-[240px]"
+            className="mt-10 inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent py-4 text-base font-semibold text-white transition hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto sm:min-w-[240px]"
           >
             <ShoppingCart className="h-5 w-5" strokeWidth={2} />
             {out ? 'Agotado' : `Añadir al carrito — ${color.name}`}
@@ -126,7 +163,7 @@ export function ProductPage() {
           <ul className="mt-10 space-y-2 border-t border-border pt-8 text-sm text-muted">
             <li>• Algodón peinado o mezcla según modelo — ficha técnica en etiqueta.</li>
             <li>• Lavado máx. 30 °C, del revés, con colores similares.</li>
-            <li>• Sin tienda física: envíos desde nuestro almacén en España.</li>
+            <li>• Sin tienda física: envíos desde Ecuador.</li>
           </ul>
         </div>
       </div>

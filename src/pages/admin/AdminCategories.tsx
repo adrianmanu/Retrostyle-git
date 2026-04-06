@@ -48,7 +48,7 @@ export function AdminCategories() {
         />
         <button
           type="submit"
-          className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-zinc-950 hover:bg-accent-hover"
+          className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white hover:bg-accent-hover"
         >
           <Plus className="h-4 w-4" />
           Añadir

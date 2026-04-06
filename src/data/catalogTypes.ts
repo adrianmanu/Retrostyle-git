@@ -16,8 +16,18 @@ export interface Product {
   compareAtPrice?: number
   categoryId: string
   colors: ProductColor[]
+  /** Texto corto / ficha técnica (tarjeta y ficha). */
   description: string
+  /** Descripción larga o historia del producto. */
   detail: string
+  /** Ej. «Drop: Retro Squad 23» */
+  dropLabel?: string
+  /** Frase o claim destacado. */
+  phrase?: string
+  /** Concepto / narrativa del diseño. */
+  concept?: string
+  /** Nota extra (ej. limited, sin restock). */
+  extraNote?: string
   isNew?: boolean
   image: string
   stock: number

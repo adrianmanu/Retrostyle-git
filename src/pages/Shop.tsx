@@ -52,7 +52,7 @@ export function Shop() {
             }}
             className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
               active === id
-                ? 'bg-accent text-zinc-950'
+                ? 'bg-accent text-white'
                 : 'border border-border bg-surface text-muted hover:border-accent/40 hover:text-foreground'
             }`}
           >

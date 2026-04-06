@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { formatMoney } from '../lib/money'
 import { Heart, ShoppingCart } from 'lucide-react'
 import type { Product } from '../data/catalogTypes'
 import { useCatalog } from '../context/CatalogContext'
@@ -18,10 +19,10 @@ export function ProductCard({ product }: ProductCardProps) {
   const out = product.stock <= 0
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition hover:border-accent/30 hover:shadow-[0_0_40px_-12px_rgba(249,115,22,0.25)]">
+    <article className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition hover:border-accent/30 hover:shadow-[0_0_40px_-12px_rgba(168,85,247,0.28)]">
       <Link to={`/producto/${product.slug}`} className="relative aspect-[3/4] overflow-hidden bg-surface-elevated">
         {product.isNew && (
-          <span className="absolute left-3 top-3 z-10 rounded-full bg-accent px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-zinc-950">
+          <span className="absolute left-3 top-3 z-10 rounded-full bg-accent px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
             Nuevo
           </span>
         )}
@@ -79,11 +80,11 @@ export function ProductCard({ product }: ProductCardProps) {
           <div>
             {product.compareAtPrice != null && (
               <p className="text-xs text-muted line-through">
-                {product.compareAtPrice.toFixed(2)} €
+                {formatMoney(product.compareAtPrice)}
               </p>
             )}
             <p className="font-display text-xl font-bold tabular-nums">
-              {product.price.toFixed(2)} €
+              {formatMoney(product.price)}
             </p>
           </div>
           <div className="flex gap-2">

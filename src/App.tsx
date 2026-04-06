@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import { CatalogProvider } from './context/CatalogContext'
 import { CartProvider } from './context/CartContext'
+import { ReviewsProvider } from './context/ReviewsContext'
 import { Layout } from './components/Layout'
 import { RequireAuth } from './components/ProtectedRoutes'
 import { Home } from './pages/Home'
@@ -26,6 +27,7 @@ export default function App() {
     <AuthProvider>
       <CatalogProvider>
         <CartProvider>
+          <ReviewsProvider>
           <BrowserRouter basename={routerBasename}>
             <Routes>
               <Route path="/admin" element={<AdminLayout />}>
@@ -49,6 +51,7 @@ export default function App() {
               </Route>
             </Routes>
           </BrowserRouter>
+          </ReviewsProvider>
         </CartProvider>
       </CatalogProvider>
     </AuthProvider>

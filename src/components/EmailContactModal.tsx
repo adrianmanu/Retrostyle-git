@@ -136,7 +136,7 @@ export function EmailContactModal({ open, onClose }: EmailContactModalProps) {
           <button
             type="button"
             onClick={openInMailClient}
-            className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-zinc-950 hover:bg-accent-hover"
+            className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white hover:bg-accent-hover"
           >
             Abrir correo
           </button>

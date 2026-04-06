@@ -9,7 +9,7 @@ const items = [
   {
     icon: Package,
     title: 'Envío gratis',
-    text: 'En compras superiores a 60 € (península).',
+    text: 'En compras superiores a US$60 (Ecuador).',
   },
   {
     icon: RefreshCw,

@@ -4,14 +4,7 @@ import { X, Minus, Plus, Trash2 } from 'lucide-react'
 import { useCatalog } from '../context/CatalogContext'
 import { useCart } from '../context/CartContext'
 import { useAuth } from '../context/AuthContext'
-
-function formatMoney(amount: number, currency: 'EUR' | 'USD') {
-  return new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency,
-    minimumFractionDigits: 2,
-  }).format(amount)
-}
+import { formatMoney } from '../lib/money'
 
 export function CartDrawer() {
   const { getProductById } = useCatalog()
@@ -23,7 +16,6 @@ export function CartDrawer() {
     setQuantity,
     subtotal,
     currency,
-    setCurrency,
   } = useCart()
   const { user } = useAuth()
   const [qtyError, setQtyError] = useState<string | null>(null)
@@ -56,27 +48,9 @@ export function CartDrawer() {
           </button>
         </div>
 
-        <div className="flex items-center justify-between gap-3 border-b border-border px-5 py-3">
-          <span className="text-xs font-medium uppercase tracking-wider text-muted">
-            Moneda
-          </span>
-          <div className="flex rounded-full border border-border p-0.5">
-            {(['EUR', 'USD'] as const).map((c) => (
-              <button
-                key={c}
-                type="button"
-                onClick={() => setCurrency(c)}
-                className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
-                  currency === c
-                    ? 'bg-accent text-zinc-950'
-                    : 'text-muted hover:text-foreground'
-                }`}
-              >
-                {c}
-              </button>
-            ))}
-          </div>
-        </div>
+        <p className="border-b border-border px-5 py-2.5 text-center text-[11px] font-medium uppercase tracking-wider text-muted">
+          Precios en {currency} · Ecuador
+        </p>
 
         <div className="flex-1 overflow-y-auto px-5 py-4">
           {lines.length === 0 ? (
@@ -95,7 +69,7 @@ export function CartDrawer() {
               {lines.map((line) => {
                 const p = getProductById(line.productId)
                 if (!p) return null
-                const linePrice = p.price * (currency === 'USD' ? 1.08 : 1)
+                const linePrice = p.price
                 return (
                   <li
                     key={line.lineId}
@@ -110,7 +84,7 @@ export function CartDrawer() {
                       <p className="truncate font-medium">{p.name}</p>
                       <p className="text-xs text-muted">{line.colorName}</p>
                       <p className="mt-1 text-sm font-semibold tabular-nums">
-                        {formatMoney(linePrice, currency)} × {line.quantity}
+                        {formatMoney(linePrice)} × {line.quantity}
                       </p>
                       <div className="mt-2 flex items-center gap-2">
                         <button
@@ -165,7 +139,7 @@ export function CartDrawer() {
             <div className="flex items-center justify-between text-sm">
               <span className="text-muted">Subtotal</span>
               <span className="font-display text-xl font-bold tabular-nums">
-                {formatMoney(subtotal, currency)}
+                {formatMoney(subtotal)}
               </span>
             </div>
             <p className="mt-2 text-xs text-muted">
@@ -175,7 +149,7 @@ export function CartDrawer() {
               <Link
                 to="/checkout"
                 onClick={closeCart}
-                className="mt-5 flex w-full items-center justify-center rounded-full bg-accent py-3.5 text-sm font-semibold text-zinc-950 transition hover:bg-accent-hover"
+                className="mt-5 flex w-full items-center justify-center rounded-full bg-accent py-3.5 text-sm font-semibold text-white transition hover:bg-accent-hover"
               >
                 Finalizar compra
               </Link>
@@ -183,7 +157,7 @@ export function CartDrawer() {
               <Link
                 to="/login?redirect=%2Fcheckout"
                 onClick={closeCart}
-                className="mt-5 flex w-full items-center justify-center rounded-full bg-accent py-3.5 text-sm font-semibold text-zinc-950 transition hover:bg-accent-hover"
+                className="mt-5 flex w-full items-center justify-center rounded-full bg-accent py-3.5 text-sm font-semibold text-white transition hover:bg-accent-hover"
               >
                 Inicia sesión para comprar
               </Link>

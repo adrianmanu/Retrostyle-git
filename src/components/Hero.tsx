@@ -4,26 +4,25 @@ import { ArrowRight } from 'lucide-react'
 export function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-border">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(249,115,22,0.18),transparent)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(168,85,247,0.2),transparent)]" />
       <div className="pointer-events-none absolute -right-32 top-1/4 h-96 w-96 rounded-full bg-accent/5 blur-3xl" />
 
       <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8 lg:py-24">
         <div>
           <p className="inline-flex rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium uppercase tracking-widest text-muted">
-            Solo online · Recién nacida
+            Solo online · Ecuador
           </p>
           <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-balance sm:text-5xl lg:text-6xl">
-            La tipografía y el color que faltaban en tu{' '}
+            Retrostyle: La pieza que le faltaba a tu{' '}
             <span className="text-accent">feed</span>.
           </h1>
           <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted">
-            Camisetas diseñadas para pantalla y calle: cortes actuales, tejidos
-            honestos y gráficos que se leen a primera vista.
+            Camisetas streetwear y diseño retro.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <Link
               to="/tienda"
-              className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-zinc-950 shadow-glow transition hover:bg-accent-hover"
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white shadow-glow transition hover:bg-accent-hover"
             >
               Ver colección
               <ArrowRight className="h-4 w-4" strokeWidth={2.5} />

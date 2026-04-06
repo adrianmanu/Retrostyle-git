@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { AtSign, Mail, MapPin } from 'lucide-react'
+import { AtSign, Mail, MapPin, Phone } from 'lucide-react'
 import { useCatalog } from '../context/CatalogContext'
 import { EmailContactModal, CONTACT_EMAIL } from './EmailContactModal'
 
@@ -11,14 +11,14 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-surface">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
           <div>
             <p className="font-display text-xl font-extrabold tracking-tight">
               Retro<span className="text-accent">style</span>
             </p>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted">
-              Marca joven de camisetas, 100 % online. Diseño tipográfico y paletas
-              pensadas para destacar en pantalla.
+              Marca 100% ecuatoriana con diseños únicos estilo streetwear/moderno
+              para marcar diferencia.
             </p>
             <a
               href="https://www.instagram.com/retrostylev_r/"
@@ -56,29 +56,28 @@ export function Footer() {
 
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-widest text-muted">
-              Ayuda
-            </h3>
-            <ul className="mt-4 space-y-2 text-sm text-muted">
-              <li>
-                <span className="cursor-not-allowed">Envíos y devoluciones</span>
-              </li>
-              <li>
-                <span className="cursor-not-allowed">Guía de tallas</span>
-              </li>
-              <li>
-                <span className="cursor-not-allowed">Preguntas frecuentes</span>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-muted">
               Contacto
             </h3>
             <ul className="mt-4 space-y-3 text-sm">
               <li className="flex gap-2 text-muted">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-                Solo online — sin tienda física. Envíos desde España.
+                Ecuador — marca online. Sin tienda física; envíos dentro del país.
+              </li>
+              <li className="flex flex-col gap-2">
+                <a
+                  href="tel:+593984847154"
+                  className="inline-flex items-center gap-2 hover:text-accent"
+                >
+                  <Phone className="h-4 w-4 shrink-0 text-accent" />
+                  +593 0984847154
+                </a>
+                <a
+                  href="tel:+593999205886"
+                  className="inline-flex items-center gap-2 hover:text-accent"
+                >
+                  <Phone className="h-4 w-4 shrink-0 text-accent" />
+                  +593 0999205886
+                </a>
               </li>
               <li>
                 <button
