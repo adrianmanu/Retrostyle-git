@@ -37,7 +37,7 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:h-[4.25rem] sm:px-6 lg:px-8">
         <Link
           to="/"
-          className="font-display text-xl font-extrabold tracking-tight text-foreground sm:text-2xl"
+          className="shrink-0 font-display text-xl font-extrabold tracking-tight text-foreground sm:text-2xl"
         >
           Retro<span className="text-accent">style</span>
         </Link>

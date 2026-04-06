@@ -16,6 +16,9 @@ export function Footer() {
             <p className="font-display text-xl font-extrabold tracking-tight">
               Retro<span className="text-accent">style</span>
             </p>
+            <p className="mt-2 max-w-sm font-display text-sm font-bold leading-snug text-foreground">
+              Retrostyle: La pieza que le faltaba a tu <span className="text-accent">feed</span>.
+            </p>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted">
               Marca 100% ecuatoriana con diseños únicos estilo streetwear/moderno
               para marcar diferencia.
